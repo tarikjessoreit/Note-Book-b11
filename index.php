@@ -20,7 +20,7 @@
 
 	                <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Login</p>
 
-	                <form class="mx-1 mx-md-4">
+	                <form class="mx-1 mx-md-4" method="post" action="dashboard.php">
 
 	                  <div class="d-flex flex-row align-items-center mb-2">
 	                    <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
@@ -40,7 +40,7 @@
 
 
 	                  <div class="d-flex justify-content-center justify-content-between mx-3 mb-3 mb-lg-4">
-	                    <button type="button" name="loginbtn" class="btn btn-primary btn-lg">Login</button>
+	                    <input type="submit" name="loginbtn" class="btn btn-primary btn-lg" value="Login">
 	                    <a type="button" href="registration.php" class="btn btn-link btn-lg">Registration</a>
 	                  </div>
 
