@@ -1,3 +1,5 @@
+<?php include "config.php"; ?>
+<?php include "functions.php"; ?>
 <!DOCTYPE html>
 <html>
 <head>
