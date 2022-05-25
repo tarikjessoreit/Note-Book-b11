@@ -4,8 +4,13 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Dashboard | Note Book</title>
+	
 	<link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"/>
+
+	<!-- datatable css -->
+	<link rel="stylesheet" href="https://cdn.datatables.net/1.12.0/css/dataTables.bootstrap5.min.css">
+
 	<link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
@@ -34,7 +39,7 @@
 		  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
 		    <li><a class="dropdown-item" href="#">Settings</a></li>
 		    <li><a class="dropdown-item" href="#">Profile</a></li>
-		    <li><a class="dropdown-item" href="#">Log Out</a></li>
+		    <li><a class="dropdown-item" href="logout.php">Log Out</a></li>
 		  </ul>
 		</div>
 	    </div>

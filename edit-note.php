@@ -4,7 +4,7 @@
 	  <div class="container">
 	  	<div class="row">
 	  		<div class="col border-bottom my-2">
-	  			<div class="h2">Add New Note</div>
+	  			<div class="h2">Edit Note</div>
 	  		</div>
 	  	</div>
 	    <div class="row">
@@ -20,8 +20,9 @@
 				  <textarea name="notedescription" class="form-control" id="notedescription" rows="3" required></textarea>
 				</div>
 
+
 				<div class="mb-3">
-				  <input type="submit" name="addnotebtn" class="btn btn-primary px-4" value="Add Note">
+				  <input type="submit" name="updatebtn" class="btn btn-primary px-4" value="Update Note">
 				</div>
 	      	</form>
 
