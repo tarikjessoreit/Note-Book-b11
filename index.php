@@ -1,5 +1,8 @@
 <?php include "config.php"; ?>
 <?php include "functions.php"; ?>
+<?php if (isset($_SESSION['login_status']) && $_SESSION['login_status']===true) {
+	header('location:dashboard.php');
+} ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,6 +13,34 @@
 	<link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
+
+
+	<?php 
+
+	if (isset($_POST['loginbtn'])) {
+		$uemail = $_POST['loginemail'];
+		$upass = md5($_POST['loginpassword']);
+
+		$sql = "SELECT * FROM $TBL_USER WHERE user_email = '$uemail' AND user_password = '$upass'";
+
+		$result = $conn->query($sql);
+
+		if ($result->num_rows > 0) {
+		  while($row = $result->fetch_assoc()) {
+		    $msg = "Login Successfull";
+		    // header('location:dashboard.php');
+		    $_SESSION['login_status'] = true; 
+		    header( "refresh:1;url=dashboard.php" );
+		  }
+		} else {
+		   $err = "Unknown Username and Password. Please try again";
+		}
+
+
+	}
+
+
+	 ?>
 
 	<section class="vh-100" style="background-color: #eee;">
 	  <div class="container h-100">
@@ -22,8 +53,24 @@
 
 	                <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Login</p>
 
-	                <form class="mx-1 mx-md-4" method="post" action="dashboard.php">
+	                <form class="mx-1 mx-md-4" method="post" action="">
+	                	<?php 
+	                		if (isset($err)) {
+	                			echo '
+		                		<div class="alert alert-warning alert-dismissible fade show" role="alert">
+							 	  '.$err.'
+								  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+								</div>';
+	                		}
 
+	                		if (isset($msg)) {
+	                			echo '
+		                		<div class="alert alert-success alert-dismissible fade show" role="alert">
+							 	  '.$msg.'
+								  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+								</div>';
+	                		}
+	                	 ?>
 	                  <div class="d-flex flex-row align-items-center mb-2">
 	                    <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
 	                    <div class="form-outline flex-fill mb-0">

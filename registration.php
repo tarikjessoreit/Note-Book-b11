@@ -11,6 +11,34 @@
 </head>
 <body>
 
+	<?php 
+	if (isset($_POST['regbtn'])) {
+
+		$udttime = date('Y-m-d H:i:s');
+		$uname = $_POST['regName'];
+		$uemail = $_POST['regEmail'];
+		$uPass = $_POST['regPass'];
+		$confirmPass = $_POST['regConfirmPass'];
+
+		if ($uPass != $confirmPass ) {
+			$err = "Password is not match. Please try again.";
+		}else{
+			$uPass = md5($uPass);
+			$sql ="INSERT INTO $TBL_USER(user_addeddate, user_name, user_email, user_password, user_status) VALUES ('$udttime', '$uname', '$uemail', '$uPass', 'active')";
+			if ($conn->query($sql) === true) {
+				$msg = "Registation Successfull. Please try to <a href='index.php'>login</a>";
+			}else{
+				$err = "Registation faild. ".$conn->error;
+			}
+			
+			
+		}
+	}
+
+
+
+	 ?>
+
 	<section class="vh-100" style="background-color: #eee;">
 	  <div class="container h-100">
 	    <div class="row d-flex justify-content-center align-items-center h-100">
@@ -22,12 +50,33 @@
 
 	                <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Sign up</p>
 
-	                <form class="mx-1 mx-md-4">
+	                <form class="mx-1 mx-md-4 was-validated" method="post" action="">
+	                	<?php 
+	                		if (isset($err)) {
+	                			echo '
+		                		<div class="alert alert-warning alert-dismissible fade show" role="alert">
+							 	  '.$err.'
+								  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+								</div>';
+	                		}
+
+	                		if (isset($msg)) {
+	                			echo '
+		                		<div class="alert alert-success alert-dismissible fade show" role="alert">
+							 	  '.$msg.'
+								  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+								</div>';
+	                		}
+	                	 ?>
+
+	                	
+
+
 
 	                  <div class="d-flex flex-row align-items-center mb-2">
 	                    <i class="fas fa-user fa-lg me-3 fa-fw"></i>
 	                    <div class="form-outline flex-fill mb-0">
-	                      <input type="text" name="regName" id="form3Example1c" class="form-control" />
+	                      <input type="text" name="regName" id="form3Example1c" class="form-control" required />
 	                      <label class="form-label" for="form3Example1c">Your Name</label>
 	                    </div>
 	                  </div>
@@ -35,7 +84,7 @@
 	                  <div class="d-flex flex-row align-items-center mb-2">
 	                    <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
 	                    <div class="form-outline flex-fill mb-0">
-	                      <input type="email" name="regEmail" id="form3Example3c" class="form-control" />
+	                      <input type="email" name="regEmail" id="form3Example3c" class="form-control" required />
 	                      <label class="form-label" for="form3Example3c">Your Email</label>
 	                    </div>
 	                  </div>
@@ -43,7 +92,7 @@
 	                  <div class="d-flex flex-row align-items-center mb-2">
 	                    <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
 	                    <div class="form-outline flex-fill mb-0">
-	                      <input type="password" name="regPass" id="form3Example4c" class="form-control" />
+	                      <input type="password" name="regPass" id="form3Example4c" class="form-control" required />
 	                      <label class="form-label" for="form3Example4c">Password</label>
 	                    </div>
 	                  </div>
@@ -51,20 +100,20 @@
 	                  <div class="d-flex flex-row align-items-center mb-2">
 	                    <i class="fas fa-key fa-lg me-3 fa-fw"></i>
 	                    <div class="form-outline flex-fill mb-0">
-	                      <input type="password" name="regConfirmPass" id="form3Example4cd" class="form-control" />
+	                      <input type="password" name="regConfirmPass" id="form3Example4cd" class="form-control" required />
 	                      <label class="form-label" for="form3Example4cd">Repeat your password</label>
 	                    </div>
 	                  </div>
 
 	                  <div class="form-check d-flex justify-content-center mb-5">
-	                    <input class="form-check-input me-2" type="checkbox" name="regAgree" value="" id="form2Example3c" />
+	                    <input class="form-check-input me-2" type="checkbox" name="regAgree" value="" id="form2Example3c" required />
 	                    <label class="form-check-label" for="form2Example3">
 	                      I agree all statements in <a href="#!">Terms of service</a>
 	                    </label>
 	                  </div>
 
 	                  <div class="d-flex justify-content-between mx-4 mb-3 mb-lg-4">
-	                    <button type="button" name="regbtn" class="btn btn-primary btn-lg">Register</button>
+	                    <input type="submit" name="regbtn" class="btn btn-primary btn-lg" value="Register">
 	                    <a type="button" href="index.php" class="btn btn-link btn-lg">Login</a>
 	                  </div>
 

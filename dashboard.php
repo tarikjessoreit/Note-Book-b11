@@ -1,5 +1,7 @@
 <?php include "header.php"?>
+<?php 
 
+ ?>
 	<section id="main">
 	  <div class="container">
 	  	<div class="row">

@@ -1,5 +1,8 @@
 <?php include "config.php"; ?>
 <?php include "functions.php"; ?>
+<?php if (!isset($_SESSION['login_status']) && $_SESSION['login_status']!=true) {
+	header('location:index.php');
+} ?>
 <!DOCTYPE html>
 <html>
 <head>
