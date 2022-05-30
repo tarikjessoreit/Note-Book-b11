@@ -27,10 +27,15 @@
 
 		if ($result->num_rows > 0) {
 		  while($row = $result->fetch_assoc()) {
+
 		    $msg = "Login Successfull";
-		    // header('location:dashboard.php');
+		    
 		    $_SESSION['login_status'] = true; 
+		    $_SESSION['username'] = $row['user_name'];
+		    $_SESSION['userID'] = $row['ID'];
+
 		    header( "refresh:1;url=dashboard.php" );
+
 		  }
 		} else {
 		   $err = "Unknown Username and Password. Please try again";

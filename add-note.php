@@ -1,4 +1,20 @@
 <?php include "header.php"?>
+<?php 
+	if (isset($_POST['addnotebtn'])) {
+		$nt_uid = $_SESSION['userID'];
+		$nt_addedDatetime = date('Y-m-d H:i:s');
+		$nt_title = $_POST['notetitle'];
+		$nt_desc = $_POST['notedescription'];
+
+		$sql = "INSERT INTO $TBL_NOTES(user_ID, nt_addeddate, nt_title, nt_description, nt_status) VALUES ($nt_uid, '$nt_addedDatetime', '$nt_title', '$nt_desc', 'active')";
+
+		if ($conn->query($sql) === true) {
+			$msg = "New Note Added Successfull. Goto to <a href='notes.php'>Note List</a>";
+		}else{
+			$err = "Failed to Add a New Note: . ".$conn->error;
+		}
+	}
+ ?>
 
 	<section id="main">
 	  <div class="container">
@@ -10,7 +26,24 @@
 	    <div class="row">
 	      <div class="col-lg-12 col-xl-11">
 	      	
-	      	<form action="" class="was-validated">
+	      	<form action="" class="was-validated" method="post">
+	      		<?php 
+            		if (isset($err)) {
+            			echo '
+                		<div class="alert alert-warning alert-dismissible fade show" role="alert">
+					 	  '.$err.'
+						  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+						</div>';
+            		}
+
+            		if (isset($msg)) {
+            			echo '
+                		<div class="alert alert-success alert-dismissible fade show" role="alert">
+					 	  '.$msg.'
+						  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+						</div>';
+            		}
+            	 ?>
 	      		<div class="mb-3">
 				  <label for="notetitle" class="form-label">Note Title</label>
 				  <input type="text" name="notetitle" class="form-control" id="notetitle" placeholder="Enter your note title here..." required>

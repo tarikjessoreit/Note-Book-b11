@@ -18,11 +18,3 @@ if($conn->connect_error){
 // DB tables
 $TBL_USER = "nb_users";
 $TBL_NOTES = "nb_notes";
-
-// $sql = "drop DATABASE databasename00000000007";
-
-// if ($conn->query($sql)==true) {
-// 	echo "data query successfull";
-// }else{
-// 	echo "faild ".$conn->error;
-// }

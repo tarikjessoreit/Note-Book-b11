@@ -39,7 +39,8 @@
 	     
 	     <div class="dropdown">
 		  <div class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-		    <i class="fa-solid fa-user"></i> Mr. Hablu
+		    <i class="fa-solid fa-user"></i> 
+		    <?php if (isset($_SESSION['username'])){echo $_SESSION['username'];} ?>
 		  </div>
 		  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
 		    <li><a class="dropdown-item" href="#">Settings</a></li>

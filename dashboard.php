@@ -26,76 +26,31 @@
 		            </tr>
 		        </thead>
 		        <tbody>
+		       <?php 
+	      		$sql = "SELECT * FROM $TBL_NOTES WHERE user_ID = ".$_SESSION['userID'];
+
+	      		$result = $conn->query($sql);
+
+	      		if ($result->num_rows > 0) {
+				  while($row = $result->fetch_assoc()) {?>
+
 		            <tr>
-		                <td>01</td>
-		                <td>05/22/2022 4:48:00</td>
-		                <td>Note title here</td>
-		                <td>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Architecto, eaque ex, fuga tenetur voluptatem atque aliquid! Eveniet unde similique tenetur facere minima rerum saepe, corrupti itaque aspernatur alias, nulla assumenda.</td>
+		                <td><?php echo $row['ID'] ?></td>
+		                <td><?php echo $row['nt_addeddate'] ?></td>
+		                <td><?php echo $row['nt_title'] ?></td>
+		                <td><?php echo $row['nt_description'] ?></td>
 		                <td>
-		                	<a href="edit-note.php" class="btn btn-sm btn-success"><i class="fa-solid fa-edit"></i></a>
-		                	<a href="delete-note.php" class="btn btn-sm btn-danger"><i class="fa-solid fa-trash-can"></i></a>
+		                	<a href="edit-note.php?nid=<?php echo $row['ID'] ?>" class="btn btn-sm btn-success"><i class="fa-solid fa-edit"></i></a>
+		                	<a href="delete-note.php?nid=<?php echo $row['ID'] ?>" class="btn btn-sm btn-danger"><i class="fa-solid fa-trash-can"></i></a>
 		                </td>
 		            </tr>
-		            <tr>
-		                <td>01</td>
-		                <td>05/22/2022 4:48:00</td>
-		                <td>Note title here</td>
-		                <td>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Architecto, eaque ex, fuga tenetur voluptatem atque aliquid! Eveniet unde similique tenetur facere minima rerum saepe, corrupti itaque aspernatur alias, nulla assumenda.</td>
-		                <td>
-		                	<a href="edit-note.php" class="btn btn-sm btn-success"><i class="fa-solid fa-edit"></i></a>
-		                	<a href="#" class="btn btn-sm btn-danger"><i class="fa-solid fa-trash-can"></i></a>
-		                </td>
-		            </tr>
-		            <tr>
-		                <td>01</td>
-		                <td>05/22/2022 4:48:00</td>
-		                <td>Note title here</td>
-		                <td>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Architecto, eaque ex, fuga tenetur voluptatem atque aliquid! Eveniet unde similique tenetur facere minima rerum saepe, corrupti itaque aspernatur alias, nulla assumenda.</td>
-		                <td>
-		                	<a href="#" class="btn btn-sm btn-success"><i class="fa-solid fa-edit"></i></a>
-		                	<a href="#" class="btn btn-sm btn-danger"><i class="fa-solid fa-trash-can"></i></a>
-		                </td>
-		            </tr>
-		            <tr>
-		                <td>01</td>
-		                <td>05/22/2022 4:48:00</td>
-		                <td>Note title here</td>
-		                <td>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Architecto, eaque ex, fuga tenetur voluptatem atque aliquid! Eveniet unde similique tenetur facere minima rerum saepe, corrupti itaque aspernatur alias, nulla assumenda.</td>
-		                <td>
-		                	<a href="#" class="btn btn-sm btn-success"><i class="fa-solid fa-edit"></i></a>
-		                	<a href="#" class="btn btn-sm btn-danger"><i class="fa-solid fa-trash-can"></i></a>
-		                </td>
-		            </tr>
-		            <tr>
-		                <td>01</td>
-		                <td>05/22/2022 4:48:00</td>
-		                <td>Note title here</td>
-		                <td>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Architecto, eaque ex, fuga tenetur voluptatem atque aliquid! Eveniet unde similique tenetur facere minima rerum saepe, corrupti itaque aspernatur alias, nulla assumenda.</td>
-		                <td>
-		                	<a href="#" class="btn btn-sm btn-success"><i class="fa-solid fa-edit"></i></a>
-		                	<a href="#" class="btn btn-sm btn-danger"><i class="fa-solid fa-trash-can"></i></a>
-		                </td>
-		            </tr>
-		            <tr>
-		                <td>01</td>
-		                <td>05/22/2022 4:48:00</td>
-		                <td>Note title here</td>
-		                <td>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Architecto, eaque ex, fuga tenetur voluptatem atque aliquid! Eveniet unde similique tenetur facere minima rerum saepe, corrupti itaque aspernatur alias, nulla assumenda.</td>
-		                <td>
-		                	<a href="#" class="btn btn-sm btn-success"><i class="fa-solid fa-edit"></i></a>
-		                	<a href="#" class="btn btn-sm btn-danger"><i class="fa-solid fa-trash-can"></i></a>
-		                </td>
-		            </tr>
-		            <tr>
-		                <td>01</td>
-		                <td>05/22/2022 4:48:00</td>
-		                <td>Note title here</td>
-		                <td>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Architecto, eaque ex, fuga tenetur voluptatem atque aliquid! Eveniet unde similique tenetur facere minima rerum saepe, corrupti itaque aspernatur alias, nulla assumenda.</td>
-		                <td>
-		                	<a href="#" class="btn btn-sm btn-success"><i class="fa-solid fa-edit"></i></a>
-		                	<a href="#" class="btn btn-sm btn-danger"><i class="fa-solid fa-trash-can"></i></a>
-		                </td>
-		            </tr>
+
+		        <?php  }
+				} else {
+				  echo "<h5 class='text-center'>No Entry Found. Please <a href='add-note.php'>Add a Note</a>.</h5>";
+				}?>
+	      	
+		            
 		        </tbody>
 		        <tfoot>
 		            <tr>
