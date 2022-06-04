@@ -35,6 +35,9 @@
 	        <li class="nav-item">
 	          <a class="nav-link" href="add-note.php">Add Note</a>
 	        </li>
+	        <li class="nav-item">
+	          <a class="nav-link" href="search.php">Search</a>
+	        </li>
 	      </ul>
 	     
 	     <div class="dropdown">
